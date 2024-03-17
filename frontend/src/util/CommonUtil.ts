@@ -55,11 +55,5 @@ export class Api {
         const {data} = await axios.post(this.url, {...params});
         return data;
     }
-
-    // async postBody(body?: any) {
-    //     const { data } = await axios.post(this.url, null, {
-    //         data: body
-    //     })
-    //     return data;
-    // }
+    
 }

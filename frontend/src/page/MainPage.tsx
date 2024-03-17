@@ -5,7 +5,7 @@ import useViewStore from "../store/ViewStore";
 const MainPage = () => {
 
     const {navId} = useViewStore();
-    const {data: testData, status} = useTestQuery("req_param");
+    const {data: testData, status} = useTestQuery("frontend-test-param");
 
     useEffect(() => {
         console.log("navId ", navId)

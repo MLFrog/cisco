@@ -16,31 +16,31 @@ module.exports = {
         // publicPath: '/',
         proxy: {
             '/': {
-                target: 'http://localhost:8080/',
+                target: 'http://localhost:8080',
                 changeOrigin: true,
             },
         },
     },
     entry: {
-        app: path.join(`${__dirname}`,  './src/index.tsx'),
+        app: path.join(__dirname,  './src/index.tsx'),
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
-            "@config": path.resolve(`${__dirname}`, "src/config/"),
-            "@css": path.resolve(`${__dirname}`, "src/static/css/"),
-            "@scss": path.resolve(`${__dirname}`, 'src/static/scss/'),
-            "@image": path.resolve(`${__dirname}`, 'src/static/image/'),
-            "@component": path.resolve(`${__dirname}`, 'src/component/'),
-            "@const": path.resolve(`${__dirname}`, "src/const/"),
-            "@hook": path.resolve(`${__dirname}`, "src/hook/"),
-            "@reactquery": path.resolve(`${__dirname}`, "src/reactquery/"),
-            "@store": path.resolve(`${__dirname}`, "src/store/"),
-            "@type": path.resolve(`${__dirname}`, "src/types/app/"),
-            "@data": path.resolve(`${__dirname}`, "src/data/"),
-            "@util": path.resolve(`${__dirname}`, "src/util/"),
-            // "@dummy": path.resolve(`${__dirname}`, "src/dummy/")
-            "@page": path.resolve(`${__dirname}`, "src/page/")
+            "@config": path.resolve(__dirname, "src/config/"),
+            "@css": path.resolve(__dirname, "src/static/css/"),
+            "@scss": path.resolve(__dirname, 'src/static/scss/'),
+            "@image": path.resolve(__dirname, 'src/static/image/'),
+            "@component": path.resolve(__dirname, 'src/component/'),
+            "@const": path.resolve(__dirname, "src/const/"),
+            "@hook": path.resolve(__dirname, "src/hook/"),
+            "@reactquery": path.resolve(__dirname, "src/reactquery/"),
+            "@store": path.resolve(__dirname, "src/store/"),
+            "@type": path.resolve(__dirname, "src/types/app/"),
+            "@data": path.resolve(__dirname, "src/data/"),
+            "@util": path.resolve(__dirname, "src/util/"),
+            // "@dummy": path.resolve(__dirname, "src/dummy/")
+            "@page": path.resolve(__dirname, "src/page/")
         }
     },
     module: {
@@ -48,7 +48,7 @@ module.exports = {
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 use: ['babel-loader', 'ts-loader'],
-                exclude: path.join(`${__dirname}`, "/node_modules/"),
+                exclude: path.join(__dirname, "/node_modules/"),
             },
             {
                 test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf|otf)$/i,
@@ -69,7 +69,7 @@ module.exports = {
     },
 
     output: {
-        path: path.join(`${__dirname}`, 'build/'),
+        path: path.join(__dirname, 'build/'),
         filename: 'js/[name].bundle.js',
         // https://stackoverflow.com/questions/67723670/how-to-change-path-for-output-images-in-webpack-5
         assetModuleFilename: pathData => {

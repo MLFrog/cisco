@@ -63,10 +63,5 @@
   },
   "devDependencies": {
     "webpack-cli": "^5.1.4"
-  },
-  "msw": {
-    "workerDirectory": [
-      "public"
-    ]
   }
 }

@@ -54,10 +54,8 @@ task npmbuild(type: NpmTask) {
 task copyFrontEndStatic(type: Copy) {
     description = "1. frontend build (css, js, media, ...) -> src/main/resources/static "
     dependsOn npmbuild
-    from("${project.projectDir}/frontend/build/static/")
+    from("${project.projectDir}/frontend/build/**/*")
     into("${project.projectDir}/src/main/resources/static")
-    includeEmptyDirs = true
-
 }
 
 task copyStaticToTemplates(type: Copy) {
@@ -67,7 +65,6 @@ task copyStaticToTemplates(type: Copy) {
         include 'index.html'
     }
     into("${project.projectDir}/src/main/resources/templates")
-    includeEmptyDirs = true
 }
 
 task copyIndexToStatic(type: Copy) {
@@ -77,12 +74,11 @@ task copyIndexToStatic(type: Copy) {
         include 'index.html'
     }
     into("${project.projectDir}/src/main/resources/static/")
-    includeEmptyDirs = true
 }
 
 bootJar {
     archiveFileName = "eps.jar"
-//    dependsOn(npmbuild)
+    dependsOn(npmbuild)
     dependsOn(copyFrontEndStatic)
     dependsOn(copyStaticToTemplates)
     dependsOn(copyIndexToStatic)

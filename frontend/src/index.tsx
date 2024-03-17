@@ -3,23 +3,20 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {createRoot} from "react-dom/client";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-
-import MainPage from "./page/MainPage";
-
 //css
-import "./static/css/sb-admin-2.css";
-import "./static/css/sb-admin-2.min.css";
+import "./assets/css/sb-admin-2.css";
+import "./assets/css/sb-admin-2.min.css";
 
 //_variables
-import "./static/scss/_variables.scss";
+// import "./static/scss/_variables.scss";
 
 //img
-import "./static/img/undraw_posting_photo.svg";
-import "./static/img/undraw_profile.svg";
-import "./static/img/undraw_profile_1.svg";
-import "./static/img/undraw_profile_2.svg";
-import "./static/img/undraw_profile_3.svg";
-import "./static/img/undraw_rocket.svg";
+import "./assets/img/undraw_posting_photo.svg";
+import "./assets/img/undraw_profile.svg";
+import "./assets/img/undraw_profile_1.svg";
+import "./assets/img/undraw_profile_2.svg";
+import "./assets/img/undraw_profile_3.svg";
+import "./assets/img/undraw_rocket.svg";
 
 //js
 // import "./static/js/sb-admin-2.js";
@@ -41,6 +38,8 @@ import "./static/img/undraw_rocket.svg";
 // import "./static/scss/utilities/_rotate.scss";
 // import "./static/scss/utilities/_text.scss";
 
+
+import MainPage from "./page/MainPage";
 
 const queryClient = new QueryClient();
 
