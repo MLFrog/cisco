@@ -11,6 +11,6 @@ public class ViewController {
 	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
-		return "main";
+		return "index";
 	}
 }

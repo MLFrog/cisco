@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "noEmitOnError": false,
+    "skipLibCheck": true,
+    "noEmitHelpers": false,
+    "module": "commonjs",
+    "types": ["node"],
+
+    /* Bundler mode */
+    "moduleResolution": "node",
+//    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "typeRoots": ["./node_modules/@types", "./src/types/root"],
+  "baseUrl": "./src/",
+  "paths": {
+    "@component/*": ["component/*"],
+    "@css/*": ["static/css/*"],
+    "@scss/*": ["static/scss/*"],
+    "@image/*": ["static/image/*"],
+    "@config/*": ["config/*"],
+    "@store/*": ["store/*"],
+    "@const/*": ["const/*"],
+    "@type/*": ["types/app/*"],
+    "@data/*": ["data/*"],
+    "@reactquery/*": ["reactquery/*"],
+    "@util/*": ["util/*"],
+    "@page/*": ["page/*"],
+    "@hook/*": ["hook/*"],
+    "react": ["node_modules/@types/react"]
+  },
+  "include": ["src"],
+}

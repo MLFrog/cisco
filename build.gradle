@@ -1,43 +1,118 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.3'
-	id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.github.node-gradle.node' version '3.2.1'
 }
 
 group = 'com.cisco'
 version = '0.0.1'
 
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2" }
 }
 
+node {
+    download = false
+    version = "18.16.0"
+    npmVersion = "9.5.1"
+    npmInstallCommand = "install"
+    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+    yarnWorkDir = file("${project.projectDir}/.gradle/yarn")
+    nodeModulesDir = file("${project.projectDir}/frontend")
+}
+
+task cleanDistAndStatic(type: Delete) {
+    doFirst {
+        delete "${project.projectDir}/src/main/resources/static/"
+        delete "${project.projectDir}/src/main/resources/templates/index.html"
+        delete "${project.projectDir}/frontend/build/"
+    }
+    doLast {
+        File dir = new File("${project.projectDir}/src/main/resources/static/")
+        dir.mkdir()
+    }
+}
+
+task npmbuild(type: NpmTask) {
+    dependsOn cleanDistAndStatic
+    dependsOn npmInstall
+    args = ['run', 'build']
+}
+
+task copyFrontEndStatic(type: Copy) {
+    description = "1. frontend build (css, js, media, ...) -> src/main/resources/static "
+    dependsOn npmbuild
+    from("${project.projectDir}/frontend/build/static/")
+    into("${project.projectDir}/src/main/resources/static")
+    includeEmptyDirs = true
+
+}
+
+task copyStaticToTemplates(type: Copy) {
+    description = "2. frontend build (index.html) -> src/main/resources/templates "
+    dependsOn copyFrontEndStatic
+    from("${project.projectDir}/frontend/build/index.html") {
+        include 'index.html'
+    }
+    into("${project.projectDir}/src/main/resources/templates")
+    includeEmptyDirs = true
+}
+
+task copyIndexToStatic(type: Copy) {
+    description = "3. frontend build (index.html) -> src/main/resources/static "
+    dependsOn copyStaticToTemplates
+    from("${project.projectDir}/frontend/build/index.html") {
+        include 'index.html'
+    }
+    into("${project.projectDir}/src/main/resources/static/")
+    includeEmptyDirs = true
+}
+
+bootJar {
+    archiveFileName = "eps.jar"
+//    dependsOn(npmbuild)
+    dependsOn(copyFrontEndStatic)
+    dependsOn(copyStaticToTemplates)
+    dependsOn(copyIndexToStatic)
+}
+
+clean {
+    dependsOn cleanDistAndStatic
+}
+
+processResources.dependsOn copyFrontEndStatic
+processResources.dependsOn copyStaticToTemplates
+processResources.dependsOn copyIndexToStatic
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-	testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
