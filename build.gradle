@@ -45,15 +45,15 @@ task cleanDistAndStatic(type: Delete) {
     }
 }
 
-task npmbuild(type: NpmTask) {
-    dependsOn cleanDistAndStatic
-    dependsOn npmInstall
-    args = ['run', 'build']
-}
+//task npmbuild(type: NpmTask) {
+//    dependsOn cleanDistAndStatic
+//    dependsOn npmInstall
+//    args = ['run', 'build']
+//}
 
 task copyFrontEndStatic(type: Copy) {
     description = "1. frontend build (css, js, media, ...) -> src/main/resources/static "
-    dependsOn npmbuild
+//    dependsOn npmbuild
     from("${project.projectDir}/frontend/build/**/*")
     into("${project.projectDir}/src/main/resources/static")
 }
@@ -78,7 +78,7 @@ task copyIndexToStatic(type: Copy) {
 
 bootJar {
     archiveFileName = "eps.jar"
-    dependsOn(npmbuild)
+//    dependsOn(npmbuild)
     dependsOn(copyFrontEndStatic)
     dependsOn(copyStaticToTemplates)
     dependsOn(copyIndexToStatic)

@@ -6,7 +6,7 @@ import {API} from "../config/url";
 import {QueryKeys} from "./queryKeys";
 
 
-export const useUserQuery = (req: any): UseQueryResult<IResponse<any>, AxiosError> => {
+export const useUserQuery = (req: any): UseQueryResult<IResponse<any>> => {
     const api = new Api(API.USER.INFO)
 
     return useQuery({
