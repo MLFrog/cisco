@@ -1,4 +1,4 @@
-package com.eps.cisco.config;
+package com.eps.cisco.application.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
