@@ -1,30 +1,39 @@
 import LnbArea from "../component/lnb/LnbArea";
-import TopBarArea from "../component/topbar/TopBarArea";
-import ModalArea from "../component/modal/ModalArea";
-import CardContent from "../component/contents/card/CardContent";
-import ChartContent from "../component/contents/chart/ChartContent";
+import ModalRootArea from "../component/modal/ModalRootArea";
 import FooterArea from "../component/footer/FooterArea";
 import ContentRootArea from "../component/contents/ContentRootArea";
+import {useTestQuery} from "../querykey/testQuery";
+import {useEffect, useState} from "react";
+import styled from "styled-components";
 
 
 const MainPage = () => {
 
-    // const {navId} = useViewStore();
-    // const {data: testData, status} = useTestQuery("frontend-test-param");
-    //
-    // useEffect(() => {
-    //     console.log("navId ", navId)
-    // }, [navId])
-    //
-    // useEffect(() => {
-    //     console.log("status")
-    //     console.log("data ", testData)
-    // }, [testData, status])
+    const {
+        data: testData,
+        status,
+        isFetched
+    } = useTestQuery("frontend-test-param");
+
+    const [isOpen, setIsOpen] = useState(true)
+
+    useEffect(() => {
+        console.log("")
+        console.log("------")
+        console.log("status ", status)
+        console.log("isFetched ", isFetched)
+        console.log("testData ", testData)
+        console.log("------")
+    }, [testData, status, isFetched])
 
     return (
-        <div>
+        <>
             {/* Page Wrapper */}
             <div id="wrapper">
+
+                {/*딤드*/}
+                <StyledModalDimmed $isOpen={isOpen}/>
+
 
                 {/*사이드 바*/}
                 <LnbArea/>
@@ -40,14 +49,25 @@ const MainPage = () => {
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"/>
             </a>
-
-            <ModalArea/>
-
+            <ModalRootArea/>
             <FooterArea/>
-        </div>
+        </>
     );
 }
 
 export default MainPage
 
+const StyledModalDimmed = styled.div<{ $isOpen: boolean }>`
+    visibility: ${({$isOpen}) => $isOpen ? 'visible' : 'hidden'};
+    opacity: ${({$isOpen}) => $isOpen ? '1' : '0'};
+    transition: ${({$isOpen}) => $isOpen ? 'opacity 450ms' : 'visibility 1ms 450ms, opacity 450ms'};
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+
+`
 

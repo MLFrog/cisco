@@ -1,8 +1,3 @@
-import React from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {createRoot} from "react-dom/client";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-
 //css
 import "./assets/css/sb-admin-2.css";
 import "./assets/css/all.css";
@@ -43,10 +38,12 @@ import "./assets/img/undraw_rocket.svg";
 // import "./static/js/demo/chart-bar-demo.js";
 // import "./static/js/demo/chart-pie-demo.js";
 // import "./static/js/demo/datatables-demo.js";
+
 //scss/navs
 import "./assets/scss/navs/_global.scss";
 // import "./assets/scss/navs/_sidebar.scss";
 // import "./assets/scss/navs/_topbar.scss";
+
 //scss/utilities
 // import "./assets/scss/utilities/_animation.scss";
 // import "./assets/scss/utilities/_background.scss";
@@ -56,7 +53,10 @@ import "./assets/scss/navs/_global.scss";
 // import "./assets/scss/utilities/_rotate.scss";
 // import "./assets/scss/utilities/_text.scss";
 
-
+import React from 'react';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {createRoot} from "react-dom/client";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import MainPage from "./page/MainPage";
 
 const queryClient = new QueryClient();

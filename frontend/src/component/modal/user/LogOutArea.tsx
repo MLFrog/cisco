@@ -1,5 +1,4 @@
-const ModalArea = () => {
-
+const LogOutArea = () => {
     return (
         <>
             {/* Logout Modal*/}
@@ -20,9 +19,8 @@ const ModalArea = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
 
-export default ModalArea
+export default LogOutArea
