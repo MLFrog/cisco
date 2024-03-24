@@ -15,7 +15,7 @@ const MainPage = () => {
         isFetched
     } = useTestQuery("frontend-test-param");
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         console.log("")
@@ -33,7 +33,6 @@ const MainPage = () => {
 
                 {/*딤드*/}
                 <StyledModalDimmed $isOpen={isOpen}/>
-
 
                 {/*사이드 바*/}
                 <LnbArea/>

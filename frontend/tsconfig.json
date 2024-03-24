@@ -42,5 +42,7 @@
     "@hook/*": ["hook/*"],
     "react": ["node_modules/@types/react"]
   },
-  "include": ["src"],
+  "include": ["src",
+    "src/types/root/index.d.ts"
+  ],
 }

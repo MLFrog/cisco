@@ -1,12 +1,90 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
+import {IUserPayload} from "../../../types/CommonType";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {QueryKeys} from "../../../querykey/queryKeys";
 
 const LogInArea = () => {
 
-    const [isLogin, setIsLogin] = useState<boolean>(true)
+    const queryClient = useQueryClient();
 
-    const handleCloseModalBtn = () => {
-        console.log("")
+    const [isLogin, setIsLogin] = useState<boolean>(false)
+    const [focusTarget, setFocusTarget] = useState<string>("")
+    const [userPayload, setUserPayload] = useState<IUserPayload>({id: "", pw: ""});
+
+    // const {mutate: loginUser} = useMutation({
+    //     mutationFn: () => userMutation(userPayload),
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries({queryKey: [QueryKeys.USER.INFO]})
+    //             .then(res => {
+    //                 console.log("res ", res);
+    //                 setIsLogin(false);
+    //             })
+    //             .catch(tes => {
+    //                 console.log("tes", tes);
+    //             })
+    //             .finally(() => {
+    //                 console.log("userData called !! ");
+    //             })
+    //     },
+    //     onError: (error) => {
+    //         console.log("error ", error)
+    //         setIsLogin(false); // 개발환경
+    //     }
+    // });
+
+
+    useEffect(() => {
+        console.log('isLogin ', isLogin)
+        if (isLogin) {
+            // 로그인 모달 팝업시 스크롤 방지
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "scroll";
+        }
+    }, [isLogin])
+
+    const onChangeHandler = (e) => {
+        const id = e.target.id;
+        if (id && id === "userId") {
+            setUserPayload({...userPayload, id: e.target.value})
+        } else if (id && id === "userPw") {
+            setUserPayload({...userPayload, pw: e.target.value})
+        } else {
+            return
+        }
+    }
+
+    const keyUpHandler = (e) => {
+        if (e.key === "Escape") {
+            const id = e.target.id;
+            if (id && id === "userId") {
+                setUserPayload({...userPayload, id: ""})
+            } else if (id && id === "userPw") {
+                setUserPayload({...userPayload, pw: ""})
+            } else {
+                return
+            }
+        } else if (e.key === "Enter") {
+            console.log("enter clicked")
+            loginUserHandler();
+        } else {
+            return
+        }
+    }
+
+    const loginUserHandler = () => {
+        if (userPayload.id === "") {
+            alert("아이디를 입력해주세요.")
+            return
+        }
+
+        if (userPayload.pw === "") {
+            alert("비밀번호를 입력해주세요.")
+            return
+        }
+
+        // loginUser();
     }
 
     return (
@@ -15,12 +93,37 @@ const LogInArea = () => {
                 <StyledModalBodyArea>
                     <StyledModalBodyItemContainer>
                         <StyledInputArea>
-                            <StyledInput type={"text"} placeholder={"아이디 입력"}/>
+                            <StyledInput
+                                tabIndex={1}
+                                autoFocus={true}
+                                required={true}
+                                id={"userId"}
+                                value={userPayload.id}
+                                type={"text"}
+                                placeholder={"아이디 입력"}
+                                $isFocus={focusTarget === "id"}
+                                onFocus={() => setFocusTarget("id")}
+                                onBlur={(() => setFocusTarget(""))}
+                                onChange={(e) => onChangeHandler(e)}
+                                onKeyUp={(e) => keyUpHandler(e)}
+                            />
                         </StyledInputArea>
                     </StyledModalBodyItemContainer>
                     <StyledModalBodyItemContainer>
                         <StyledInputArea>
-                            <StyledInput type={"password"} placeholder={"비밀번호 입력"}/>
+                            <StyledInput
+                                tabIndex={2}
+                                required={true}
+                                id={"userPw"}
+                                value={userPayload.pw}
+                                type={"password"}
+                                placeholder={"비밀번호 입력"}
+                                $isFocus={focusTarget === "pw"}
+                                onFocus={() => setFocusTarget("pw")}
+                                onBlur={(() => setFocusTarget(""))}
+                                onChange={(e) => onChangeHandler(e)}
+                                onKeyUp={(e) => keyUpHandler(e)}
+                            />
                         </StyledInputArea>
                     </StyledModalBodyItemContainer>
 
@@ -33,20 +136,17 @@ const LogInArea = () => {
                         </div>
                     </StyledFunctionRow>
 
-                    <StyledModalBtnSend>로그인</StyledModalBtnSend>
+                    <StyledModalBtnSend tabIndex={3} onClick={() => loginUserHandler()}>로그인</StyledModalBtnSend>
                 </StyledModalBodyArea>
-                <div style={{textAlign: "center", marginTop: "10px", color: "#f5f8ff"}}>
+                <StyledJoinUserArea>
                     아직 회원이 아니신가요? <span>회원가입</span>
-                </div>
+                </StyledJoinUserArea>
             </StyledModalContainer>
-
-
         </>
     )
 }
 
 export default LogInArea
-
 
 const StyledModalContainer = styled.div<{ $isOpen: boolean }>`
     position: absolute;
@@ -68,7 +168,7 @@ const StyledModalContainer = styled.div<{ $isOpen: boolean }>`
 
     span {
         text-align: center;
-        color: #28a745;
+        color: #26917D;
     }
 `
 
@@ -79,14 +179,21 @@ const StyledInputArea = styled.div`
 `
 
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ $isFocus: boolean }>`
     width: 460px;
     height: 60px;
     border-radius: 8px;
+    color: #000000;
+    padding: 12px;
+    outline: none;
+
+    border: ${(props) => props.$isFocus ? "solid 3px #26917D" : "solid 2px #000000"};
 
     &::placeholder {
-        padding-left: 14px;
+        opacity: 60%;
     }
+
+
 `
 
 const StyledModalBodyArea = styled.div`
@@ -121,11 +228,11 @@ const StyledModalBtnSend = styled.button`
     color: #fff;
     box-shadow: 0 0.052vw 0.156vw 0 rgba(0, 0, 0, 0.2),
     inset 0 0.052vw 0 0 rgba(232, 232, 232, 0.18);
-    background-color: forestgreen;
+    background-color: #26917D;
     border-radius: 20px;
 
     &:hover {
-        background-color: #28a745;
+        background-color: #22C5A7;
     }
 `;
 
@@ -143,3 +250,8 @@ const StyledCheckBox = styled.input`
     margin-right: 5px;
 `
 
+const StyledJoinUserArea = styled.div`
+    text-align: center;
+    margin-top: 10px;
+    color: #f5f8ff;
+`

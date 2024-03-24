@@ -22,25 +22,25 @@ module.exports = {
         },
     },
     entry: {
-        app: path.join(__dirname,  './src/index.tsx'),
+        app: path.join(__dirname,  '../src/index.tsx'),
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
-            "@config": path.resolve(__dirname, "src/config/"),
-            "@css": path.resolve(__dirname, "src/static/css/"),
-            "@scss": path.resolve(__dirname, 'src/static/scss/'),
-            "@image": path.resolve(__dirname, 'src/static/image/'),
-            "@component": path.resolve(__dirname, 'src/component/'),
-            "@const": path.resolve(__dirname, "src/const/"),
-            "@hook": path.resolve(__dirname, "src/hook/"),
-            "@reactquery": path.resolve(__dirname, "src/reactquery/"),
-            "@store": path.resolve(__dirname, "src/store/"),
-            "@type": path.resolve(__dirname, "src/types/app/"),
-            "@data": path.resolve(__dirname, "src/data/"),
-            "@util": path.resolve(__dirname, "src/util/"),
+            "@config": path.resolve(__dirname, "./src/config/"),
+            "@css": path.resolve(__dirname, "./src/assets/css/"),
+            "@scss": path.resolve(__dirname, './src/assets/scss/'),
+            "@image": path.resolve(__dirname, './src/assets/img/'),
+            "@component": path.resolve(__dirname, './src/component/'),
+            "@const": path.resolve(__dirname, "./src/const/"),
+            "@hook": path.resolve(__dirname, "./src/hook/"),
+            "@reactquery": path.resolve(__dirname, "./src/reactquery/"),
+            "@store": path.resolve(__dirname, "./src/store/"),
+            "@type": path.resolve(__dirname, "./src/types/app/"),
+            "@data": path.resolve(__dirname, "./src/data/"),
+            "@util": path.resolve(__dirname, "./src/util/"),
             // "@dummy": path.resolve(__dirname, "src/dummy/")
-            "@page": path.resolve(__dirname, "src/page/")
+            "@page": path.resolve(__dirname, "./src/page/")
         }
     },
     module: {

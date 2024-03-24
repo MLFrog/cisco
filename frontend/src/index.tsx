@@ -1,3 +1,29 @@
+//font
+import "./assets/font/webfonts/fa-brands-400.eot";
+import "./assets/font/webfonts/fa-brands-400.svg";
+import "./assets/font/webfonts/fa-brands-400.ttf";
+import "./assets/font/webfonts/fa-brands-400.woff";
+import "./assets/font/webfonts/fa-brands-400.woff2";
+import "./assets/font/webfonts/fa-regular-400.eot";
+import "./assets/font/webfonts/fa-regular-400.svg";
+import "./assets/font/webfonts/fa-regular-400.ttf";
+import "./assets/font/webfonts/fa-regular-400.woff";
+import "./assets/font/webfonts/fa-regular-400.woff2";
+import "./assets/font/webfonts/fa-solid-900.eot";
+import "./assets/font/webfonts/fa-solid-900.svg";
+import "./assets/font/webfonts/fa-solid-900.ttf";
+import "./assets/font/webfonts/fa-solid-900.woff";
+import "./assets/font/webfonts/fa-solid-900.woff2";
+import "./assets/font/webfonts/SCDream1.otf";
+import "./assets/font/webfonts/SCDream2.otf";
+import "./assets/font/webfonts/SCDream3.otf";
+import "./assets/font/webfonts/SCDream4.otf";
+import "./assets/font/webfonts/SCDream5.otf";
+import "./assets/font/webfonts/SCDream6.otf";
+import "./assets/font/webfonts/SCDream7.otf";
+import "./assets/font/webfonts/SCDream8.otf";
+import "./assets/font/webfonts/SCDream9.otf";
+
 //css
 import "./assets/css/sb-admin-2.css";
 import "./assets/css/all.css";
@@ -24,6 +50,13 @@ import "./assets/scss/_variables.scss";
 // import "./assets/scss/_utilities.scss";
 
 //img
+import "./assets/img/EPS_icon_logo.svg";
+import "./assets/img/favicon_EPS.png";
+import "./assets/img/icon_car.svg";
+import "./assets/img/icon_car_158px.svg";
+import "./assets/img/icon_checked.svg";
+import "./assets/img/icon_wheelchair.svg";
+import "./assets/img/img_basicImg.svg";
 import "./assets/img/undraw_posting_photo.svg";
 import "./assets/img/undraw_profile.svg";
 import "./assets/img/undraw_profile_1.svg";

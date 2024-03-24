@@ -6,5 +6,10 @@ export const API = {
     USER: {
         INFO: `${apiUrl}/user/info`
     },
-    TEST: `/test`
+    RESERVATION: {
+        INFO: `${apiUrl}/reservation/info`,
+
+    },
+    TEST: `/test`,
+
 }
