@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import {IParkingInfo} from "../../../types/CommonType";
+import useViewStore from "../../../store/ViewStore";
 
 const ReservationProgressArea = (props: {info: IParkingInfo}) => {
+
+    const {
+        navObj, setNavObj
+    } = useViewStore();
 
     return (
         <StyledReservationProgressArea>
@@ -15,7 +20,7 @@ const ReservationProgressArea = (props: {info: IParkingInfo}) => {
             </StyledReservationParkingMapArea>
 
             <StyledReservationParkingMapArea>
-                <StyledReservationProgressBtn>예약진행</StyledReservationProgressBtn>
+                <StyledReservationProgressBtn onClick={() => setNavObj({...navObj, subTab: "datepicker"})}>예약진행</StyledReservationProgressBtn>
             </StyledReservationParkingMapArea>
         </StyledReservationProgressArea>
     )

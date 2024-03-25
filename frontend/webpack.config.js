@@ -1,11 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const mode = process.env.NODE_ENV || 'development';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     devServer: {
@@ -22,7 +20,7 @@ module.exports = {
         },
     },
     entry: {
-        app: path.join(__dirname,  '../src/index.tsx'),
+        app: path.join(__dirname,  './src/index.tsx'),
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],

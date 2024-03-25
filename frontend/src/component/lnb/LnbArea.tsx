@@ -4,10 +4,13 @@ import styled from "styled-components";
 
 const LnbArea = () => {
 
-    const {navId, setNavId} = useViewStore();
+    const {
+        navObj,
+        setNavObj,
+    } = useViewStore();
 
     const setFontStyle = (tabId: string) => {
-        if (navId === tabId) {
+        if (navObj.navId === tabId) {
             return {
                 'color': '#ffffff',
                 'fontWeight' : "500",
@@ -33,7 +36,7 @@ const LnbArea = () => {
                 {/* Nav Item - Tables */}
                 <li className="nav-item">
                     <a className="nav-link" style={setFontStyle("reservation")}
-                        onClick={() => setNavId("reservation")}
+                        onClick={() => setNavObj({...navObj, navId: "reservation"})}
                     >
                         <span style={{fontSize: "23px"}}>주차장 예약</span>
                     </a>
@@ -41,7 +44,7 @@ const LnbArea = () => {
                 {/* Nav Item - Charts */}
                 <li className="nav-item">
                     <a className="nav-link" style={setFontStyle("report")}
-                        onClick={() => setNavId("report")}
+                       onClick={() => setNavObj({...navObj, navId: "report"})}
                     >
                         <span style={{fontSize: "23px"}}>EPS 리포트</span>
                     </a>

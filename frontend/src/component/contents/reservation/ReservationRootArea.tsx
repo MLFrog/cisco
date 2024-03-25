@@ -3,10 +3,17 @@ import {useState} from "react";
 import ReservationWelcomeArea from "./ReservationWelcomeArea";
 import ReservationProgressArea from "./ReservationProgressArea";
 import {IParkingInfo} from "../../../types/CommonType";
+import useViewStore from "../../../store/ViewStore";
+import ReservationDatePickerArea from "./ReservationDatePickerArea";
 
 const ReservationRootArea = () => {
 
-    const [activeInfo, setActiveInfo] = useState<IParkingInfo>(null)
+    const {
+        navObj,
+        setNavObj,
+        activeInfo,
+        setActiveInfo,
+    } = useViewStore();
     const testList: IParkingInfo[] = [
         {
             id: "0",
@@ -34,6 +41,11 @@ const ReservationRootArea = () => {
         },
     ]
 
+    const listBoxClickHandler = (info: IParkingInfo) => {
+        setActiveInfo(info)
+        setNavObj({...navObj, subTab: "area"})
+    }
+
     return (
         <StyledReservationArea>
 
@@ -44,11 +56,11 @@ const ReservationRootArea = () => {
 
                 <StyledReservationListArea>
                     {
-                        testList.map((info) => {
+                        testList.map((info: IParkingInfo) => {
                             return (
                                 <StyledReservationListBox
                                     $isActive={activeInfo?.id === info.id}
-                                    onClick={() => setActiveInfo(info)}
+                                    onClick={() => listBoxClickHandler(info)}
                                 >
                                     <StyledReservationBox>
                                         <StyledParkingImageArea/>
@@ -74,7 +86,12 @@ const ReservationRootArea = () => {
 
             <StyledReservationParkingArea>
                 {
-                    activeInfo === null ? <ReservationWelcomeArea/> : <ReservationProgressArea info={activeInfo}/>
+                    navObj.subTab === "welcome" && activeInfo === null ?
+                        <ReservationWelcomeArea/> :
+                        navObj.subTab === "area" && activeInfo !== null ?
+                            <ReservationProgressArea info={activeInfo}/> :
+                            navObj.subTab === "datepicker" && activeInfo !== null ?
+                                <ReservationDatePickerArea info={activeInfo}/> : ""
                 }
             </StyledReservationParkingArea>
 
