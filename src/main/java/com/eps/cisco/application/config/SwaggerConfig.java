@@ -11,6 +11,10 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
+/**
+ * Spring Security 미적용
+ * 적용 시, 주석 해제
+ */
 @Configuration
 public class SwaggerConfig {
 	@Bean
@@ -29,8 +33,8 @@ public class SwaggerConfig {
  
     private Info apiInfo() {
         return new Info()
-                .title("Springdoc")
-                .description("Springdoc을 사용한 Swagger UI")
+                .title("EPS API Document")
+                .description("EPS Swagger UI")
                 .version("0.0.1");
     }
 }

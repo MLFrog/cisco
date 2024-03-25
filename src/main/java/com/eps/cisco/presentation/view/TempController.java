@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 미사용 확인 시, 폐기 예정
+ */
 @Slf4j
 @RestController
 @RequestMapping("test")
