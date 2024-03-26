@@ -2,6 +2,10 @@
   "name": "frontend",
   "version": "0.1.0",
   "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve --hot --progress",
+    "build": "cross-env NODE_ENV=production webpack --progress"
+  },
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
@@ -43,10 +47,6 @@
     "webpack-dev-server": "^4.15.1",
     "zustand": "^4.5.2"
   },
-  "scripts": {
-    "start": "NODE_ENV=development webpack serve --hot --progress",
-    "build": "NODE_ENV=production webpack --progress"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -66,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "webpack-cli": "^5.1.4"
   }
 }
