@@ -13,7 +13,7 @@ import ReservationRootArea from "./reservation/ReservationRootArea";
 
 const ContentRootArea = () => {
 
-    const {navId} = useViewStore();
+    const {navObj} = useViewStore();
 
     const currentTabName = (navId: TNavId) => {
         return navId === "reservation" ? "주차장 예약" : "EPS 리포트"
@@ -34,14 +34,14 @@ const ContentRootArea = () => {
 
                         {/* Page Heading */}
                         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 className="h3 mb-0 text-gray-800">{currentTabName(navId)}</h1>
+                            <h1 className="h3 mb-0 text-gray-800">{currentTabName(navObj.navId)}</h1>
                             {/*<a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i*/}
                             {/*    className="fas fa-download fa-sm text-white-50"/> Generate Report</a>*/}
                         </div>
 
 
                         {
-                            navId === "reservation" ?
+                            navObj.navId === "reservation" ?
                                 // 주차장 예약 컴포넌트
                                 <ReservationRootArea/>
                                 : null

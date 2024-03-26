@@ -24,7 +24,7 @@ repositories {
 }
 
 node {
-    download = false
+    download = true
     version = "18.16.0"
     npmVersion = "9.5.1"
     npmInstallCommand = "install"

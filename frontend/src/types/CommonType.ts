@@ -1,4 +1,10 @@
 export type TNavId = "reservation" | "report";
+export type TSubTab = "welcome" | "area" | "datepicker" | "complete";
+
+export interface INavObj {
+    navId: TNavId;
+    subTab: TSubTab;
+}
 
 export interface IResponse<T> {
     code: number;
