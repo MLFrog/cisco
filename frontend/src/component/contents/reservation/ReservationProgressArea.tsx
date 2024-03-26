@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import {IParkingInfo} from "../../../types/CommonType";
 import useViewStore from "../../../store/ViewStore";
+import {useRef} from "react";
 
-const ReservationProgressArea = (props: {info: IParkingInfo}) => {
+const ReservationProgressArea = (props: { info: IParkingInfo }) => {
 
     const {
         navObj, setNavObj
     } = useViewStore();
+
+    const ref = useRef();
 
     return (
         <StyledReservationProgressArea>
@@ -20,7 +23,10 @@ const ReservationProgressArea = (props: {info: IParkingInfo}) => {
             </StyledReservationParkingMapArea>
 
             <StyledReservationParkingMapArea>
-                <StyledReservationProgressBtn onClick={() => setNavObj({...navObj, subTab: "datepicker"})}>예약진행</StyledReservationProgressBtn>
+                <StyledReservationProgressBtn
+                    onClick={() => setNavObj({...navObj, subTab: "datepicker"})}
+                    // onMouseDown={this.style.backgroundColor}
+                >예약진행</StyledReservationProgressBtn>
             </StyledReservationParkingMapArea>
         </StyledReservationProgressArea>
     )
@@ -30,7 +36,7 @@ export default ReservationProgressArea
 
 const StyledReservationProgressArea = styled.div`
     width: 100%;
-    
+
 `
 
 const StyledReservationProgressHead = styled.div`
@@ -53,7 +59,7 @@ const StyledReservationParkingMapArea = styled.div`
     position: relative;
     align-items: center;
     justify-content: center;
-    top : 80px;
+    top: 80px;
 `
 
 const StyledReservationParkingMap = styled.div`
@@ -73,12 +79,16 @@ const StyledReservationProgressBtn = styled.button`
     padding: 0;
     border: none;
 
-    background:#2BA38D;
+    background: #2BA38D;
     font-weight: 500;
     font-size: 18px;
     color: #FFFFFF;
 
     &:active {
-        background:#8FF5EC;
+        background: #8FF5EC;
+    }
+
+    &:hover {
+        background: #22C5A7;
     }
 `

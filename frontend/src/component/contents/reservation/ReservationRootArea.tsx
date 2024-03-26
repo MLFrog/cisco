@@ -179,7 +179,7 @@ const StyledReservationListBox = styled.div<{ $isActive?: boolean }>`
     }
 
     &:hover {
-        background: ${({$isActive}) => $isActive ? '#8FF5EC' : '#20c9a6'};
+        background: ${({$isActive}) => $isActive ? '#8FF5EC' : '#22C5A7'};
     }
 
 `
