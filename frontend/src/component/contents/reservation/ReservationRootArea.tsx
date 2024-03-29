@@ -59,6 +59,7 @@ const ReservationRootArea = () => {
                         testList.map((info: IParkingInfo) => {
                             return (
                                 <StyledReservationListBox
+                                    key={info.id}
                                     $isActive={activeInfo?.id === info.id}
                                     onClick={() => listBoxClickHandler(info)}
                                 >

@@ -2,29 +2,34 @@ import LnbArea from "../component/lnb/LnbArea";
 import ModalRootArea from "../component/modal/ModalRootArea";
 import FooterArea from "../component/footer/FooterArea";
 import ContentRootArea from "../component/contents/ContentRootArea";
-import {useTestQuery} from "../querykey/testQuery";
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 
 
 const MainPage = () => {
 
-    const {
-        data: testData,
-        status,
-        isFetched
-    } = useTestQuery("frontend-test-param");
+    // const {
+    //     data: testData,
+    //     status,
+    //     isFetched
+    // } = useTestQuery("frontend-test-param");
 
     const [isOpen, setIsOpen] = useState(false)
 
+    // useEffect(() => {
+    //     console.log("")
+    //     console.log("------")
+    //     console.log("status ", status)
+    //     console.log("isFetched ", isFetched)
+    //     console.log("testData ", testData)
+    //     console.log("------")
+    // }, [testData, status, isFetched])
+
     useEffect(() => {
-        console.log("")
-        console.log("------")
-        console.log("status ", status)
-        console.log("isFetched ", isFetched)
-        console.log("testData ", testData)
-        console.log("------")
-    }, [testData, status, isFetched])
+        if (window.location.pathname.replace("/", "").length > 0) {
+             console.log("404")
+        }
+    }, [window.location.pathname])
 
     return (
         <>

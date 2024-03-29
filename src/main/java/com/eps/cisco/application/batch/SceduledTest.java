@@ -12,6 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 public class SceduledTest {
 	@Scheduled(cron = "0/5 * * * * ?")
 	public void scheduledCron() {
-		log.info("TestScheduledCron");
+//		log.info("TestScheduledCron");
 	}
 }

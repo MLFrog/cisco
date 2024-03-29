@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "main": "index.js",
+  "homepage": "",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --hot --progress",
     "build": "cross-env NODE_ENV=production webpack --progress"

@@ -87,7 +87,7 @@ import "./assets/scss/navs/_global.scss";
 // import "./assets/scss/utilities/_text.scss";
 
 import React from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Router, Routes} from "react-router-dom";
 import {createRoot} from "react-dom/client";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import MainPage from "./page/MainPage";
@@ -101,8 +101,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
         <BrowserRouter>
             <Routes>
-                <Route path="*" element={<NotFoundPage/>}/>
                 <Route path="/" element={<MainPage/>}/>
+                <Route path="/404" element={<NotFoundPage/>}/>
+                <Route path="*" element={<Navigate to={"/404"} replace/>}/>
             </Routes>
         </BrowserRouter>
     </QueryClientProvider>
