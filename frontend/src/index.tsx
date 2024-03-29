@@ -91,6 +91,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {createRoot} from "react-dom/client";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import MainPage from "./page/MainPage";
+import NotFoundPage from "./page/NotFoundPage";
 
 const queryClient = new QueryClient();
 
@@ -98,8 +99,9 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
     <QueryClientProvider client={queryClient}>
-        <BrowserRouter basename={"/"}>
+        <BrowserRouter>
             <Routes>
+                <Route path="*" element={<NotFoundPage/>}/>
                 <Route path="/" element={<MainPage/>}/>
             </Routes>
         </BrowserRouter>
