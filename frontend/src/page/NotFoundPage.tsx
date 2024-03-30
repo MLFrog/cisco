@@ -5,7 +5,7 @@ const NotFoundPage = () => {
 
     return (
         <StyledNotFoundRootArea>
-            404
+            404sdffsdfsda
         </StyledNotFoundRootArea>
     );
 }

@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {INavObj, IParkingInfo, TNavId} from "../types/CommonType";
+import {INavObj, IParkingInfo} from "../types/CommonType";
 
 interface IViewStore {
     // 현재 네비게이션 식별키
@@ -14,12 +14,12 @@ interface IViewStore {
 const useViewStore = create<IViewStore>((set) => ({
     // 현재 네비게이션 식별키
     navObj: {navId: "reservation", subTab: "welcome"},
+    // navObj: {navId: "reservation", subTab: "fail"},
     setNavObj: (arg: INavObj) => set((state) => ({navObj: arg})),
+
     // 선택한 주차장 리스트 아이템
     activeInfo: null,
     setActiveInfo: (arg: IParkingInfo | null) => set((state) => ({activeInfo: arg})),
-
-    
 }));
 
 export default useViewStore;

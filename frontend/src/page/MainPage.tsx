@@ -25,12 +25,6 @@ const MainPage = () => {
     //     console.log("------")
     // }, [testData, status, isFetched])
 
-    useEffect(() => {
-        if (window.location.pathname.replace("/", "").length > 0) {
-             console.log("404")
-        }
-    }, [window.location.pathname])
-
     return (
         <>
             {/* Page Wrapper */}

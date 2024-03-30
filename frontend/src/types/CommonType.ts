@@ -1,5 +1,5 @@
 export type TNavId = "reservation" | "report";
-export type TSubTab = "welcome" | "area" | "datepicker" | "complete";
+export type TSubTab = "welcome" | "area" | "datepicker" | "complete" | "fail";
 
 export interface INavObj {
     navId: TNavId;
@@ -29,4 +29,12 @@ export interface IParkingInfo {
     parkingCurrentValue: string,
     address: string,
     operatingTime: string,
+}
+
+export interface IParkArea {
+    id: string,
+    isPark: boolean
+    isElect: boolean,
+    isDisorder: boolean,
+    parkHere?: string
 }
