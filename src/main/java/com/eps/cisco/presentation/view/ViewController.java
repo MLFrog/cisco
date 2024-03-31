@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Thymeleaf 컨트롤 전용(폐기 예정)
+ * 리액트 진입점
  */
 @Controller
 public class ViewController {
 	
-	@RequestMapping(value = "/main")
+	@RequestMapping(value = "/")
 	public String mainPage() {
 		return "index";
 	}
