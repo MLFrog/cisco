@@ -50,3 +50,9 @@ export interface IPark {
     updatedAt: string;
 }
 
+export interface ISensor {
+    airLabel: string;
+    airValue: string;
+    dustLabel: string;
+    dustValue: string;
+}

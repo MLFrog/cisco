@@ -1,16 +1,17 @@
 const ctx = "/"
-const springSecurityCtx = "v1"
-const apiUrl = `${ctx}/v1`
 
 export const API = {
     USER: {
-        INFO: `${apiUrl}/user/info`
+        INFO: `/user/info`
     },
     RESERVATION: {
-        INFO: `${apiUrl}/reservation/info`,
+        INFO: `/reservation/info`,
     },
     PARK: {
-        LIST: `${apiUrl}/park/list`,
+        LIST: `/park/list`,
+    },
+    SENSOR: {
+        INFO: `/stat/info`,
     },
     TEST: `/test`,
 

@@ -1,21 +1,19 @@
-package com.eps.cisco.domain;
+package com.eps.cisco.infrastructure.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "sensor", schema = "public")
 @Entity
-public class Sensor {
+@Table(name = "sensor_log", schema = "public")
+public class SensorEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "row_id")
     private String rowId;
     @Column(name = "sensor_id")
-    private String sensorId;
+    private Long sensorId;
     @Column(name = "upstreampower")
     private String upStreamPower;
     @Column(name = "air_quality")
