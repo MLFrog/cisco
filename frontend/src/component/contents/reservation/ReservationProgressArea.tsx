@@ -5,6 +5,7 @@ import ReservationDatePickerArea from "./progress/ReservationDatePickerArea";
 import styled from "styled-components";
 import {PARKING_AREA_LIST} from "../../../config/const";
 import useViewStore from "../../../store/ViewStore";
+import {useParkQuery} from "../../../querykey/parkQuery";
 
 
 const ReservationProgressArea = () => {
@@ -15,6 +16,8 @@ const ReservationProgressArea = () => {
         activeInfo,
         setActiveInfo,
     } = useViewStore();
+
+    const {data: parkList, isFetched} = useParkQuery("");
 
     const listBoxClickHandler = (info: IParkingInfo) => {
         setActiveInfo(info)

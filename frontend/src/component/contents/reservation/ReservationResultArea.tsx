@@ -100,7 +100,7 @@ const ReservationResultArea = (props: { info: IParkingInfo }) => {
 
                                     </StyledQrScanBox>
 
-                                    <StyledQrNumberArea>00000-00000-00000</StyledQrNumberArea>
+                                    {/*<StyledQrNumberArea>00000-00000-00000</StyledQrNumberArea>*/}
 
                                     <StyledParkEndNoticeArea>주차장 이용을 종료하시고 싶으시면<br/><span>‘이용완료'</span> 버튼을 눌러주세요.</StyledParkEndNoticeArea>
 

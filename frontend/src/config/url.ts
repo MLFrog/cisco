@@ -8,7 +8,9 @@ export const API = {
     },
     RESERVATION: {
         INFO: `${apiUrl}/reservation/info`,
-
+    },
+    PARK: {
+        LIST: `${apiUrl}/park/list`,
     },
     TEST: `/test`,
 

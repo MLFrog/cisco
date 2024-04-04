@@ -38,3 +38,15 @@ export interface IParkArea {
     isDisorder: boolean,
     parkHere?: string
 }
+
+export interface IPark {
+    id: number;
+    parkareaId: number;
+    sensorId: string;
+    parkedType: string;
+    isParked: boolean;
+    isReserved: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
+
