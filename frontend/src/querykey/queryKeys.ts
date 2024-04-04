@@ -8,6 +8,9 @@ export const QueryKeys = {
     PARK: {
         LIST: "PARK_LIST_QUERY_KEY"
     },
+    SENSOR: {
+        INFO: "SENSOR_INFO_QUERY_KEY",
+    },
     TEST: "TEST_QUERY_KEY",
 
 }
