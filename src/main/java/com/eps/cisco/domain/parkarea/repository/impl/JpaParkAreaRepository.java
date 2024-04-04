@@ -2,21 +2,29 @@ package com.eps.cisco.domain.parkarea.repository.impl;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.util.Assert;
 
 import com.eps.cisco.domain.parkarea.ParkArea;
 import com.eps.cisco.domain.parkarea.ParkAreaId;
 import com.eps.cisco.domain.parkarea.ParkAreaRepository;
+import com.eps.cisco.domain.parkarea.convert.ParkAreaConverter;
 import com.eps.cisco.infrastructure.jpa.entity.ParkingEntity;
 import com.eps.cisco.infrastructure.jpa.repository.ParkingJpaRepository;
 
 public class JpaParkAreaRepository implements ParkAreaRepository {
 	
 	private final ParkingJpaRepository jpaRepository;
+	private final ParkAreaConverter<ParkingEntity> converter;
 	
-	public JpaParkAreaRepository(ParkingJpaRepository repository) {
+	public JpaParkAreaRepository(ParkingJpaRepository repository, ParkAreaConverter<ParkingEntity> converter) {
+		Assert.notNull(repository, "Repository는 null일 수 없습니다.");
+		Assert.notNull(converter, "Converter는 null일 수 없습니다.");
+		this.converter = converter;
 		this.jpaRepository = repository;
 	}
 
@@ -28,8 +36,19 @@ public class JpaParkAreaRepository implements ParkAreaRepository {
 	}
 
 	@Override
-	public ParkingEntity findOnebyId(ParkAreaId id) {
-		return this.jpaRepository.findbyParkAreaId(id);
+	public ParkArea findOnebyId(ParkAreaId id) {
+		return Optional.ofNullable(this.jpaRepository.findbyParkAreaId(id))
+				.map(this.converter::convert)
+				.orElse(null);
+	}
+	
+	@Override
+	public List<ParkArea> findAll() {
+		return Optional.ofNullable(this.jpaRepository.findAllNotReserved())
+				.map(parkAreaList -> parkAreaList.stream()
+						.map(this.converter::convert)
+						.collect(Collectors.toList()))
+				.orElse(Collections.emptyList());
 	}
 
 	private ParkingEntity convert(ParkArea data) {
