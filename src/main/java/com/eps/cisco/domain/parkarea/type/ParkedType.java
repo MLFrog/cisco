@@ -21,5 +21,9 @@ public enum ParkedType {
 		}
 		throw new IllegalArgumentException("코드가 일치하지 않습니다.");
 	}
+	
+	public String getCode() {
+		return this.code;
+	}
 
 }
