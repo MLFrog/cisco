@@ -1,9 +1,10 @@
 package com.eps.cisco.application.webex;
 
-import com.eps.cisco.domain.webex.MessageRes;
-import com.eps.cisco.domain.webex.MessageText;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import com.eps.cisco.infrastructure.webex.MessageRes;
+import com.eps.cisco.infrastructure.webex.MessageText;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.OutputStream;

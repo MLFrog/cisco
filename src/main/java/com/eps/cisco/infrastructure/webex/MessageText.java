@@ -1,4 +1,4 @@
-package com.eps.cisco.domain.webex;
+package com.eps.cisco.infrastructure.webex;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
