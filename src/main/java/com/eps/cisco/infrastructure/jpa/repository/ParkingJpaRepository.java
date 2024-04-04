@@ -9,5 +9,5 @@ import com.eps.cisco.infrastructure.jpa.entity.ParkingEntity;
 public interface ParkingJpaRepository extends JpaRepository<ParkingEntity, Long>  {
 	ParkingEntity findByParkingId(String id);
 	
-    List<ParkingEntity> findAllByIsReservedIs(Boolean is);
+    List<ParkingEntity> findAll();
 }
