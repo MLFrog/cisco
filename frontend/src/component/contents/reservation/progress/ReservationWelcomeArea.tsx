@@ -1,4 +1,4 @@
-const icon_car_158px = require("../../../assets/img/icon_car_158px.svg");
+const icon_car_158px = require("../../../../assets/img/icon_car_158px.svg");
 import styled from "styled-components";
 
 

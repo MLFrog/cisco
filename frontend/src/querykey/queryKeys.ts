@@ -1,10 +1,16 @@
 export const QueryKeys = {
-    TEST: "TEST_QUERY_KEY",
     USER: {
         INFO: "USER_INFO_QUERY_KEY"
+    },
+    RESERVATION: {
+        INFO: "RESERVATION_INFO_QUERY_KEY",
     },
     PARK: {
         LIST: "PARK_LIST_QUERY_KEY"
     },
+    SENSOR: {
+        INFO: "SENSOR_INFO_QUERY_KEY",
+    },
+    TEST: "TEST_QUERY_KEY",
 
 }

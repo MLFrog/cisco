@@ -2,6 +2,11 @@
   "name": "frontend",
   "version": "0.1.0",
   "main": "index.js",
+  "homepage": "",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve --hot --progress",
+    "build": "cross-env NODE_ENV=production webpack --progress"
+  },
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
@@ -23,11 +28,13 @@
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
     "css-minimizer-webpack-plugin": "^6.0.0",
+    "dayjs": "^1.11.10",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.8.1",
     "msw": "^2.1.7",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
@@ -42,10 +49,6 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "zustand": "^4.5.2"
-  },
-  "scripts": {
-    "start": "NODE_ENV=development webpack serve --hot --progress",
-    "build": "NODE_ENV=production webpack --progress"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +69,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "webpack-cli": "^5.1.4"
   }
 }

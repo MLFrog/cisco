@@ -23,74 +23,9 @@ repositories {
     maven { url "https://plugins.gradle.org/m2" }
 }
 
-node {
-    download = true
-    version = "18.16.0"
-    npmVersion = "9.5.1"
-    npmInstallCommand = "install"
-    npmWorkDir = file("${project.projectDir}/.gradle/npm")
-    yarnWorkDir = file("${project.projectDir}/.gradle/yarn")
-    nodeModulesDir = file("${project.projectDir}/frontend")
-}
-
-task cleanDistAndStatic(type: Delete) {
-    doFirst {
-        delete "${project.projectDir}/src/main/resources/static/"
-        delete "${project.projectDir}/src/main/resources/templates/index.html"
-        delete "${project.projectDir}/frontend/build/"
-    }
-    doLast {
-        File dir = new File("${project.projectDir}/src/main/resources/static/")
-        dir.mkdir()
-    }
-}
-
-task npmbuild(type: NpmTask) {
-    dependsOn cleanDistAndStatic
-    dependsOn npmInstall
-    args = ['run', 'build']
-}
-
-task copyFrontEndStatic(type: Copy) {
-    description = "1. frontend build (css, js, media, ...) -> src/main/resources/static "
-    dependsOn npmbuild
-    from("${project.projectDir}/frontend/build/**/*")
-    into("${project.projectDir}/src/main/resources/static")
-}
-
-task copyStaticToTemplates(type: Copy) {
-    description = "2. frontend build (index.html) -> src/main/resources/templates "
-    dependsOn copyFrontEndStatic
-    from("${project.projectDir}/frontend/build/index.html") {
-        include 'index.html'
-    }
-    into("${project.projectDir}/src/main/resources/templates")
-}
-
-task copyIndexToStatic(type: Copy) {
-    description = "3. frontend build (index.html) -> src/main/resources/static "
-    dependsOn copyStaticToTemplates
-    from("${project.projectDir}/frontend/build/index.html") {
-        include 'index.html'
-    }
-    into("${project.projectDir}/src/main/resources/static/")
-}
-
 bootJar {
     archiveFileName = "eps.jar"
-    dependsOn(npmbuild)
-    dependsOn(copyFrontEndStatic)
-    dependsOn(copyStaticToTemplates)
-    dependsOn(copyIndexToStatic)
 }
-
-clean {
-    dependsOn cleanDistAndStatic
-}
-
-processResources.dependsOn copyFrontEndStatic
-processResources.dependsOn copyStaticToTemplates
-processResources.dependsOn copyIndexToStatic
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
@@ -102,6 +37,7 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'com.google.zxing:javase:3.5.3'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'

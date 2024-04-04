@@ -86,11 +86,12 @@ import "./assets/scss/navs/_global.scss";
 // import "./assets/scss/utilities/_rotate.scss";
 // import "./assets/scss/utilities/_text.scss";
 
-import React from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {BrowserRouter, Navigate, Route, Router, Routes} from "react-router-dom";
 import {createRoot} from "react-dom/client";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import MainPage from "./page/MainPage";
+import NotFoundPage from "./page/NotFoundPage";
 
 const queryClient = new QueryClient();
 
@@ -98,7 +99,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
     <QueryClientProvider client={queryClient}>
-        <BrowserRouter basename={"/"}>
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<MainPage/>}/>
             </Routes>
