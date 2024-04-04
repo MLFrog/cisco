@@ -44,7 +44,7 @@ public class JpaParkAreaRepository implements ParkAreaRepository {
 	
 	@Override
 	public List<ParkArea> findAll() {
-		return Optional.ofNullable(this.jpaRepository.findAllByIsReservedIs(false))
+		return Optional.ofNullable(this.jpaRepository.findAll())
 				.map(parkAreaList -> parkAreaList.stream()
 						.map(this.converter::convert)
 						.collect(Collectors.toList()))
