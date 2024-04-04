@@ -1,8 +1,9 @@
 package com.eps.cisco.domain.parkarea;
 
-import com.eps.cisco.infrastructure.jpa.entity.ParkingEntity;
+import java.util.List;
 
 public interface ParkAreaRepository {
 	void save(ParkArea obj);
-	ParkingEntity findOnebyId(ParkAreaId id);
+	ParkArea findOnebyId(ParkAreaId id);
+	List<ParkArea> findAll();
 }
