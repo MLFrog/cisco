@@ -3,6 +3,9 @@ package com.eps.cisco.domain.sensor;
 import lombok.Data;
 import org.apache.logging.log4j.util.Strings;
 
+/**
+ * 도메인이 아님 해당 코드 리팩토링 필요함
+ */
 @Data
 public class SensorResDto {
     private String airLabel;  // 좋음, 보통, 나쁨

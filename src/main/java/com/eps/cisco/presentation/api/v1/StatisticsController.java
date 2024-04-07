@@ -1,4 +1,4 @@
-package com.eps.cisco.presentation.view;
+package com.eps.cisco.presentation.api.v1;
 
 import com.eps.cisco.application.statistics.SensorApplication;
 import com.eps.cisco.domain.sensor.SensorResDto;
