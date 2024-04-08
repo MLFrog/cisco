@@ -50,6 +50,15 @@ public class JpaParkAreaRepository implements ParkAreaRepository {
 						.collect(Collectors.toList()))
 				.orElse(Collections.emptyList());
 	}
+	
+	@Override
+	public List<ParkArea> findListByCanReserved() {
+		return Optional.ofNullable(this.jpaRepository.findAllByIsReservedIs(false))
+				.map(parkAreaList -> parkAreaList.stream()
+						.map(this.converter::convert)
+						.collect(Collectors.toList()))
+				.orElse(Collections.emptyList());
+	}
 
 	private ParkingEntity convert(ParkArea data) {
 		ParkingEntity obj = new ParkingEntity();

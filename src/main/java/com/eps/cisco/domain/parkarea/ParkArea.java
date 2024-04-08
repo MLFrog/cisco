@@ -65,7 +65,7 @@ public class ParkArea {
 	 * @param repository
 	 */
 	public ParkArea getReservedParkArea(ParkAreaRepository repository) {
-		List<ParkArea> parkAreas = repository.findAll();
+		List<ParkArea> parkAreas = repository.findListByCanReserved();
 
 		// 우선순위 큐 생성
 		PriorityQueue<ParkArea> priorityQueue = new PriorityQueue<>(Comparator.comparingLong(ParkArea::getId));
