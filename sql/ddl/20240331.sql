@@ -37,16 +37,22 @@ CREATE TABLE parking_log
   updatedAt       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE sensor
+CREATE TABLE sensor_log
 (
   row_id              BIGSERIAL   PRIMARY KEY,
   sensor_id           BIGINT      NOT NULL,
   upstreampower       BOOLEAN     NOT NULL DEFAULT false,
   air_quality         VARCHAR(20),
   air_quality_score   BIGINT,
-  temperature_celsius FLOAT,
-  temperature_quality VARCHAR(20),
+  pm25_concentration  INTEGER,
+  pm25_quality 		  VARCHAR(20),
   meta_data           JSON,
   createdAt           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt           TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE sensor
+(
+  row_id              BIGSERIAL   PRIMARY KEY,
+  sensor_id           BIGINT      NOT NULL
+)
